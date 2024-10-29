@@ -15,7 +15,7 @@ import img1 from "../cards/img/image1.png";
 import img2 from "../cards/img/image2.png";
 import img3 from "../cards/img/image3.png";
 import img4 from "../cards/img/image4.png";
-import img5 from "../cards/img/nav.png";
+import img__5 from "../cards/img/nav.png";
 
 const sliderList = [
   {
