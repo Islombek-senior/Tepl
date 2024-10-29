@@ -68,6 +68,7 @@ function Cards() {
   return (
     <div style={{ padding: "20px" }}>
       <div>
+        {/* dfguiopihgcvh */}
         <Swiper className="mySwiper">
           {sliderList.map((sl, index) => (
             <SwiperSlide
