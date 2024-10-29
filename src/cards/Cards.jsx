@@ -8,7 +8,7 @@ import "../cards/cards.css";
 import img_1 from "./imgs/img1.png";
 import img_2 from "./imgs/img2.png";
 import img_3 from "./imgs/img3.png";
-import img__3 from "./imgs/img4.png";
+import img_4 from "./imgs/img4.png";
 import img_6 from "./imgs/img6.png";
 ////////////////////////////////////
 import img1 from "../cards/img/image1.png";
@@ -22,7 +22,7 @@ const sliderList = [
     id: 4,
     title: "Basalt wool",
     desc: `Базальтовое волокно представляет собой материал, изготовленный из чрезвычайно тонких волокон`,
-    img: img__3,
+    img: img_4,
     images: [img4],
   },
   {
@@ -68,7 +68,6 @@ function Cards() {
   return (
     <div style={{ padding: "20px" }}>
       <div>
-        {/* dfguiopihgcvh */}
         <Swiper className="mySwiper">
           {sliderList.map((sl, index) => (
             <SwiperSlide
