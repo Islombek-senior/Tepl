@@ -4,10 +4,13 @@ import App from "./App.jsx";
 import "./index.css";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
+import UseContext from "./hooks/UseContext.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ToastContainer />
-    <App />
+    <UseContext>
+      <ToastContainer />
+      <App />
+    </UseContext>
   </StrictMode>
 );

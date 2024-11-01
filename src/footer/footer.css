@@ -5,3 +5,11 @@ ul li {
 ul {
   margin-bottom: 10px;
 }
+
+.min-height {
+  min-height: 90vh;
+}
+
+.outlet {
+  flex: auto;
+}

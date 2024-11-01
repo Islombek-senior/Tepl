@@ -3,6 +3,7 @@ import { Button } from "antd";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { GoTrash } from "react-icons/go";
 import { Contexts } from "../App";
+import { Link } from "react-router-dom";
 
 function Like() {
   const { like, setLike, setBasket, basket } = useContext(Contexts);
@@ -63,15 +64,16 @@ function Like() {
                 {item.price} $
               </p>
               <div className="flex justify-between align-baseline gap-1 mt-5">
-                <Button
-                  onClick={() => removeFromBasket(item.id)}
-                  style={{
-                    fontSize: "17px",
-                  }}
-                  className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
-                >
-                  Buy Now <HiMiniShoppingCart />
-                </Button>
+                <Link to={`/buying/${item.id}`}>
+                  <Button
+                    style={{
+                      fontSize: "17px",
+                    }}
+                    className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
+                  >
+                    Buy Now <HiMiniShoppingCart />
+                  </Button>
+                </Link>
                 <Button
                   className="bg-[#ff2a2a] hover:bg-white hover:text-[#FFB12A] text-white border-0 w-16 sm:w-28 p-2"
                   onClick={() => removeFromLike(item.id)}

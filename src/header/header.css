@@ -61,3 +61,9 @@
     align-items: center;
   }
 }
+
+.button_1:nth-child(3) {
+  width: 130px;
+  padding: 20px;
+  border-radius: 10px;
+}

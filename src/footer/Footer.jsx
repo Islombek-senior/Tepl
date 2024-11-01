@@ -10,15 +10,9 @@ import "../footer/footer.css";
 
 function Footer() {
   return (
-    <div
-      style={{
-        display: "flex",
-        justifyContent: "flex-end",
-        alignItems: "flex-end",
-      }}
-    >
+    <div className="min-height">
       <div
-        className="grid grid-cols-1 gap-16 justify-between align-middle sm:grid-cols-2 md:grid-cols-2"
+        className="grid grid-cols-1 gap-16 justify-between align-middle sm:grid-cols-2 md:grid-cols-2 outlet"
         style={{
           background: "#2D2B45",
           width: "100%",

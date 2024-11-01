@@ -16,27 +16,27 @@ function Discount() {
     if (product && !exsistB) {
       setBasket([...basket, product]);
       toast("Added to favorite list!", {
+        position: "top-center", // yoki "bottom-center"
+        autoClose: 800,
         theme: "colored",
         className: "bg-success my-toast", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
           padding: "5px",
           borderRadius: "8px",
-          position: "top-center", // yoki "bottom-center"
-          autoClose: 3000,
           hideProgressBar: true,
         },
       });
     } else if (exsistB) {
       toast("This product is already exisit!", {
+        autoClose: 800,
+        position: "top-center",
         theme: "colored",
         className: "bg-success my-toast_1", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
           padding: "5px",
           borderRadius: "8px",
-          position: "top-center",
-          autoClose: 3000,
           hideProgressBar: true,
         },
       });
@@ -50,6 +50,8 @@ function Discount() {
       setLike([...like, product]);
       toast("Added to favorite list!", {
         theme: "colored",
+        autoClose: 800,
+        position: "top-center",
         className: "bg-success my-toast", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
@@ -59,6 +61,8 @@ function Discount() {
       });
     } else if (exsistL) {
       toast("This product is already exisit!", {
+        autoClose: 800,
+        position: "top-center",
         theme: "colored",
         className: "bg-success my-toast_1", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {

@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import img1 from "../header/header.jpg";
 import { FaRegHeart } from "react-icons/fa";
 import { GiShoppingBag } from "react-icons/gi";
@@ -7,9 +7,15 @@ import { Button } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import { Contexts } from "../App";
 import "../header/header.css";
+import Modals from "../modal/Modal";
 
 function Header() {
   const { like, basket } = useContext(Contexts);
+  const [modal2Open, setModal2Open] = useState(false);
+
+  const toggleModal2 = () => {
+    setModal2Open(!modal2Open);
+  };
 
   return (
     <div className="bg-[#f7f7f7] py-2">
@@ -65,11 +71,15 @@ function Header() {
           </Link>
 
           {/* Profile Icon */}
-          <Button className="button_1 flex items-center justify-center">
-            <GoPerson />
+          <Button
+            className="button_1 flex items-center justify-center"
+            onClick={toggleModal2}
+          >
+            <GoPerson /> Profile
           </Button>
         </div>
       </div>
+      <Modals modal2Open={modal2Open} setModal2Open={setModal2Open} />
     </div>
   );
 }

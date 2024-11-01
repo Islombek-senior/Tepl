@@ -80,7 +80,7 @@ function Cards() {
               }}
             >
               <div
-                className="rounded-xl p-8 pr-5 ps-5 text-white"
+                className="p-8 pr-5 ps-5 text-white"
                 style={{
                   display: "flex",
                   justifyContent: "center",
@@ -88,8 +88,9 @@ function Cards() {
                   gap: "320px",
                   backgroundImage: `url(${sl.images})`,
                   backgroundSize: "cover",
-                  width: "100%",
+                  width: "80%",
                   height: "100%",
+                  borderRadius: "40px",
                 }}
               >
                 <div className="w-72 text-start">

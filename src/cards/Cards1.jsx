@@ -10,16 +10,34 @@ function Cards1() {
   const { data, like, basket, setBasket, setLike } = useContext(Contexts);
 
   const addToBasket = (id) => {
-    const everr = data.find((it) => it.id === id);
+    const product = data.find((p) => p.id === id);
     const exsistB = basket.some((t) => t.id === id);
-
-    if (everr && !exsistB) {
-      setBasket([...basket, everr]);
-      toast("Added to basket!", { theme: "colored", className: "bg-success" });
+    if (product && !exsistB) {
+      setBasket([...basket, product]);
+      toast("Added to favorite list!", {
+        theme: "colored",
+        className: "bg-success my-toast",
+        autoClose: 1000,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        style: {
+          fontSize: "16px",
+          padding: "5px",
+          borderRadius: "8px",
+        },
+      });
     } else if (exsistB) {
-      alert("This product is already in your basket");
+      toast("This product is already exisit!", {
+        theme: "colored",
+        className: "bg-success my-toast_1",
+        autoClose: 1000,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        style: {
+          fontSize: "16px",
+          padding: "5px",
+          borderRadius: "8px",
+        },
+      });
     }
-    console.log(id);
   };
 
   const addToLike = (id) => {
@@ -27,9 +45,29 @@ function Cards1() {
     const exsistL = like.some((t) => t.id === id);
     if (product && !exsistL) {
       setLike([...like, product]);
-      toast("Wow so easy!");
+      toast("Added to favorite list!", {
+        theme: "colored",
+        className: "bg-success my-toast",
+        autoClose: 1000,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        style: {
+          fontSize: "16px",
+          padding: "5px",
+          borderRadius: "8px",
+        },
+      });
     } else if (exsistL) {
-      alert("This product is already in your favorite list");
+      toast("This product is already exisit!", {
+        theme: "colored",
+        className: "bg-success my-toast_1",
+        autoClose: 1000,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        style: {
+          fontSize: "16px",
+          padding: "5px",
+          borderRadius: "8px",
+        },
+      });
     }
   };
 
@@ -37,7 +75,6 @@ function Cards1() {
     <div style={{ padding: "20px" }}>
       <div className="flex justify-between align-middle mb-14 p-8">
         <h1 style={{ fontWeight: "bolder", fontSize: "30px" }}>
-          {" "}
           New items on the site
         </h1>
         <a href="#" className=" underline-0 text-2xl">
@@ -52,7 +89,7 @@ function Cards1() {
               padding: "20px",
               borderRadius: "10px",
               marginTop: "30px",
-              height: "450px",
+              height: "100%",
               marginBottom: "50px",
             }}
             key={item.id}
@@ -66,7 +103,7 @@ function Cards1() {
                 marginBottom: "40px",
               }}
             >
-              <Link to={`/products/${item.id}`}>
+              <Link to={`/productList/${item.id}`}>
                 <img
                   src={item.images[0]}
                   alt=""
@@ -80,7 +117,18 @@ function Cards1() {
               </Link>
             </div>
             <div style={{ textAlign: "start" }}>
-              <p style={{ fontSize: "20px" }}>{item.title}</p>
+              <p
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  marginBottom: "20px",
+                }}
+              >
+                {item.title}
+              </p>
+              <p style={{ fontSize: "16px", marginBottom: "20px" }}>
+                {item.description}
+              </p>
               <p style={{ fontSize: "20px", fontWeight: "bold" }}>
                 {item.price} $
               </p>

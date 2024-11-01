@@ -4,6 +4,7 @@ import { HiMiniShoppingCart } from "react-icons/hi2";
 import { FaRegHeart } from "react-icons/fa";
 import { Contexts } from "../App";
 import { toast } from "react-toastify";
+import { Link } from "react-router-dom";
 
 function Cards2() {
   const { data, like, basket, setBasket, setLike } = useContext(Contexts);
@@ -15,7 +16,9 @@ function Cards2() {
       setBasket([...basket, product]);
       toast("Added to favorite list!", {
         theme: "colored",
-        className: "bg-success my-toast", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        className: "bg-success my-toast",
+        autoClose: 800,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
           padding: "5px",
@@ -25,7 +28,9 @@ function Cards2() {
     } else if (exsistB) {
       toast("This product is already exisit!", {
         theme: "colored",
-        className: "bg-success my-toast_1", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        className: "bg-success my-toast_1",
+        autoClose: 800,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
           padding: "5px",
@@ -42,7 +47,9 @@ function Cards2() {
       setLike([...like, product]);
       toast("Added to favorite list!", {
         theme: "colored",
-        className: "bg-success my-toast", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        className: "bg-success my-toast",
+        autoClose: 800,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
           padding: "5px",
@@ -52,7 +59,9 @@ function Cards2() {
     } else if (exsistL) {
       toast("This product is already exisit!", {
         theme: "colored",
-        className: "bg-success my-toast_1", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        className: "bg-success my-toast_1",
+        autoClose: 800,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
         style: {
           fontSize: "16px",
           padding: "5px",
@@ -61,7 +70,6 @@ function Cards2() {
       });
     }
   };
-
   return (
     <div style={{ padding: "20px" }}>
       <div className="flex justify-between align-middle mb-14 p-8">
@@ -79,8 +87,9 @@ function Cards2() {
               background: "white",
               padding: "20px",
               borderRadius: "10px",
+              marginTop: "30px",
+              height: "100%",
               marginBottom: "50px",
-              height: "450px",
             }}
             key={item.id}
             className="shadow-md"
@@ -93,23 +102,36 @@ function Cards2() {
                 marginBottom: "40px",
               }}
             >
-              <img
-                src={item.images[0]}
-                alt=""
-                style={{
-                  width: "100px",
-                  height: "250px",
-                  objectFit: "contain",
-                }}
-                className="mx-auto"
-              />
+              <Link to={`/productList/${item.id}`}>
+                <img
+                  src={item.images[0]}
+                  alt=""
+                  style={{
+                    width: "100px",
+                    height: "250px",
+                    objectFit: "contain",
+                  }}
+                  className="mx-auto"
+                />
+              </Link>
             </div>
             <div style={{ textAlign: "start" }}>
-              <p style={{ fontSize: "19px" }}>{item.title}</p>
+              <p
+                style={{
+                  fontSize: "20px",
+                  fontWeight: "bold",
+                  marginBottom: "20px",
+                }}
+              >
+                {item.title}
+              </p>
+              <p style={{ fontSize: "16px", marginBottom: "20px" }}>
+                {item.description}
+              </p>
               <p style={{ fontSize: "20px", fontWeight: "bold" }}>
                 {item.price} $
               </p>
-              <div className="flex justify-between align-baseline gap-1 mt-5 mb-5">
+              <div className="flex justify-between align-baseline gap-1 mt-5">
                 <Button
                   onClick={() => addToBasket(item.id)}
                   style={{
