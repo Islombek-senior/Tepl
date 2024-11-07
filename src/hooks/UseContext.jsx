@@ -16,42 +16,71 @@ function UseContext({ children }) {
   const [like, setLike] = useState([]);
 
   const addToBasket = (id) => {
-    const everr = data.find((it) => it.id === id);
+    const product = data.find((it) => it.id === id);
     const exsistB = basket.some((t) => t.id === id);
-
-    if (everr && !exsistB) {
-      setBasket([...basket, everr]);
-      toast("Added to basket!", { theme: "colored", className: "bg-success" });
+    if (product && !exsistB) {
+      const updatedBasket = [...basket, product];
+      setBasket(updatedBasket);
+      toast("Added to favorite list!", {
+        theme: "colored",
+        className: "bg-success my-toast",
+        autoClose: 1000,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        style: {
+          fontSize: "16px",
+          padding: "5px",
+          borderRadius: "8px",
+        },
+      });
     } else if (exsistB) {
-      alert("This product is already in your basket");
+      toast("This product is already exisit!", {
+        theme: "colored",
+        className: "bg-success my-toast_1",
+        autoClose: 1000,
+        position: "top-center", // bg-success Bootstrap'dan va my-toast o'z klassingiz
+        style: {
+          fontSize: "16px",
+          padding: "5px",
+          borderRadius: "8px",
+        },
+      });
     }
-    console.log(id);
   };
 
   const addToLike = (id) => {
     const product = data.find((p) => p.id === id);
     const exsistL = like.some((t) => t.id === id);
     if (product && !exsistL) {
-      setLike([...like, product]);
+      const updatedLike = [...like, product];
+      setLike(updatedLike);
       toast("Wow so easy!");
     } else if (exsistL) {
-      alert("This product is already in your favorite list");
     }
   };
 
   const removeFromBasket = (id) => {
     const updatedBasket = basket.filter((p) => p.id !== id);
     setBasket(updatedBasket);
+    localStorage.setItem("basket", JSON.stringify(updatedBasket));
   };
+
   const removeFromLike = (id) => {
     const updatedLike = like.filter((p) => p.id !== id);
     setLike(updatedLike);
+    localStorage.setItem("like", JSON.stringify(updatedLike));
   };
 
   useEffect(() => {
-    axios.get("https://dummyjson.com/products").then((res) => {
-      setData(res.data.products);
+    axios.get("https://0c7d0caa3768a5b0.mokky.dev/Teplodom").then((res) => {
+      setData(res.data);
     });
+
+    // Sahifa yuklanganda `localStorage`dan ma'lumotlarni yuklaymiz
+    const storedBasket = JSON.parse(localStorage.getItem("basket"));
+    if (storedBasket) setBasket(storedBasket);
+
+    const storedLike = JSON.parse(localStorage.getItem("like"));
+    if (storedLike) setLike(storedLike);
   }, []);
 
   return (
@@ -75,7 +104,7 @@ function UseContext({ children }) {
 }
 
 export const usePro = () => {
-  return useContext(UseContext);
+  return useContext(Contexts);
 };
 
 export default UseContext;

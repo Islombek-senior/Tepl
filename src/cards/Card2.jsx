@@ -74,11 +74,9 @@ function Cards2() {
     <div style={{ padding: "20px" }}>
       <div className="flex justify-between align-middle mb-14 p-8">
         <h1 style={{ fontWeight: "bolder", fontSize: "30px" }}>
-          Popular Products
+          Популярные товары
         </h1>
-        <a href="#" className=" underline-0 text-2xl">
-          All category
-        </a>
+        <Link to={"/allCategories"}>Смотреть все</Link>
       </div>
       <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data.slice(13, 25).map((item) => (
@@ -104,7 +102,7 @@ function Cards2() {
             >
               <Link to={`/productList/${item.id}`}>
                 <img
-                  src={item.images[0]}
+                  src={item.img}
                   alt=""
                   style={{
                     width: "100px",
@@ -126,7 +124,7 @@ function Cards2() {
                 {item.title}
               </p>
               <p style={{ fontSize: "16px", marginBottom: "20px" }}>
-                {item.description}
+                {item.desc}
               </p>
               <p style={{ fontSize: "20px", fontWeight: "bold" }}>
                 {item.price} $
@@ -139,7 +137,7 @@ function Cards2() {
                   }}
                   className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
                 >
-                  Add to cart <HiMiniShoppingCart />
+                  В корзину <HiMiniShoppingCart />
                 </Button>
                 <Button
                   className="bg-[#FFB12A] hover:bg-white hover:text-[#FFB12A] text-white border-0 w-16 sm:w-28 p-2"

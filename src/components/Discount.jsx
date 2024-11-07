@@ -99,7 +99,7 @@ function Discount() {
                 justifyContent: "center",
                 alignItems: "center",
                 marginBottom: "40px",
-                backgroundImage: `url(${item.images[0]})`,
+                backgroundImage: `url(${item.img})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
                 width: "100%",

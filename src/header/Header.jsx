@@ -3,18 +3,32 @@ import img1 from "../header/header.jpg";
 import { FaRegHeart } from "react-icons/fa";
 import { GiShoppingBag } from "react-icons/gi";
 import { GoPerson } from "react-icons/go";
-import { Button } from "antd";
+import { Button, Input } from "antd";
 import { Link, NavLink } from "react-router-dom";
 import { Contexts } from "../App";
 import "../header/header.css";
 import Modals from "../modal/Modal";
+import axios from "axios";
 
 function Header() {
-  const { like, basket } = useContext(Contexts);
+  const { data, setData, like, basket } = useContext(Contexts);
   const [modal2Open, setModal2Open] = useState(false);
 
   const toggleModal2 = () => {
     setModal2Open(!modal2Open);
+  };
+
+  const searchIn = (e) => {
+    axios
+      .get(
+        `https://0c7d0caa3768a5b0.mokky.dev/Teplodom?title=*${e.target.value}`
+      )
+      .then((res) => {
+        setData(res.data);
+      })
+      .catch((err) => {
+        console.error(err);
+      });
   };
 
   return (
@@ -37,9 +51,11 @@ function Header() {
 
         {/* Search Input */}
         <div className="w-full md:w-auto">
-          <input
+          <Input
+            onChange={searchIn}
             type="text"
-            className="w-full md:w-80 p-3 rounded-xl shadow-md hidden lg:block outline-none"
+            style={{ width: "350px" }}
+            className="md:w-full p-3 rounded-xl shadow-md hidden lg:block outline-none"
             placeholder="Search..."
           />
         </div>

@@ -12,9 +12,10 @@ import ResponsiveNav from "./nav/Nav";
 import ForCurer from "./components/ForCurer";
 import ReturnPro from "./components/ReturnPro";
 import Contact from "./components/Contact";
-import NewThings from "./components/NewThings";
 import Discount from "./components/Discount";
 import Buying from "./selectedProducts/Buying";
+import AllCategories from "./allCategories/AllCategories";
+import New from "./components/New";
 
 export const Contexts = createContext();
 
@@ -25,8 +26,8 @@ function App() {
   const [protect, setProtect] = useState(false);
 
   useEffect(() => {
-    axios.get("https://dummyjson.com/products").then((res) => {
-      setData(res.data.products);
+    axios.get("https://0c7d0caa3768a5b0.mokky.dev/Teplodom").then((res) => {
+      setData(res.data);
     });
   }, []);
 
@@ -56,12 +57,13 @@ function App() {
               <Route path="/buying/:id" element={<Buying />} />
               {/* ///////////////////////////////////////// */}
               <Route path="/contact" element={<Contact />} />
-              <Route path="/forcurer" element={<ForCurer />} />
+              <Route path="/forCurer" element={<ForCurer />} />
               {/* <Route element={<ProtectedRoute />}> */}
               <Route path="/discount" element={<Discount />} />
               {/* </Route> */}
-              <Route path="/newthings" element={<NewThings />} />
-              <Route path="/returnpro" element={<ReturnPro />} />
+              <Route path="/new" element={<New />} />
+              <Route path="/returnPro" element={<ReturnPro />} />
+              <Route path="/allCategories" element={<AllCategories />} />
             </Routes>
             <Footer />
           </Router>

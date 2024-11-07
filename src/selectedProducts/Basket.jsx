@@ -1,14 +1,17 @@
-import React, { useContext } from "react";
-import { Button, Card, Col, Row } from "antd";
+import React, { useContext, useState } from "react";
+import { Button } from "antd";
 import { HiMiniShoppingCart } from "react-icons/hi2";
-import { FaRegHeart } from "react-icons/fa";
 import { GoTrash } from "react-icons/go";
 import { Contexts } from "../App";
-import { Link } from "react-router-dom";
+import Modal_2 from "../modal/Modal_2";
 
 function Basket() {
   const { basket, setBasket } = useContext(Contexts);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
   const removeFromBasket = (id) => {
     const updatedBasket = basket.filter((p) => p.id !== id);
     setBasket(updatedBasket);
@@ -51,7 +54,7 @@ function Basket() {
               }}
             >
               <img
-                src={item.images[0]}
+                src={item.img}
                 alt=""
                 style={{
                   width: "100px",
@@ -67,16 +70,15 @@ function Basket() {
                 {item.price} $
               </p>
               <div className="flex justify-between align-baseline gap-1 mt-5">
-                <Link to={`/buying/${item.id}`}>
-                  <Button
-                    style={{
-                      fontSize: "17px",
-                    }}
-                    className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
-                  >
-                    Buy Now <HiMiniShoppingCart />
-                  </Button>
-                </Link>
+                <Button
+                  style={{
+                    fontSize: "17px",
+                  }}
+                  className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
+                  onClick={showModal}
+                >
+                  Buy Now <HiMiniShoppingCart />
+                </Button>
                 <Button
                   className="bg-[#ff2a2a] hover:bg-white hover:text-[#FFB12A] text-white border-0 w-16 sm:w-28 p-2"
                   onClick={() => removeFromBasket(item.id)}
@@ -90,7 +92,12 @@ function Basket() {
             </div>
           </div>
         ))}
-      </div>{" "}
+      </div>
+      <Modal_2
+        isModalOpen={isModalOpen}
+        setIsModalOpen={setIsModalOpen}
+        showModal={showModal}
+      />
     </div>
   );
 }

@@ -23,9 +23,9 @@ import img_4 from "../nav/img/image4.png";
 const Links = [
   { name: "Товары по акции", path: "/discount" },
   { name: "Новинки", path: "/new" },
-  { name: "Поставщикам", path: "/suppliers" },
-  { name: "Контакты", path: "/contacts" },
-  { name: "Возврат товара", path: "/return" },
+  { name: "Поставщикам", path: "/forCurer" },
+  { name: "Контакты", path: "/contact" },
+  { name: "Возврат товара", path: "/returnPro" },
 ];
 
 const NavLink = ({ children, path }) => {

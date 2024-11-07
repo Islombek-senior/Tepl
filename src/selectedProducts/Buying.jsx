@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { FaCalendarAlt, FaMinus, FaPlus, FaWallet } from "react-icons/fa";
 import axios from "axios";
+import Modal_2 from "../modal/Modal_2";
 
 function Buying() {
   const [data, setData] = useState({});

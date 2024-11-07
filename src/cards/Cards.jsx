@@ -16,6 +16,7 @@ import img2 from "../cards/img/image2.png";
 import img3 from "../cards/img/image3.png";
 import img4 from "../cards/img/image4.png";
 import img5 from "../cards/img/nav.png";
+import { Link } from "react-router-dom";
 
 const sliderList = [
   {
@@ -117,34 +118,33 @@ function Cards() {
       </div>
 
       <div className="flex justify-between align-middle mb-14 p-8">
-        <h1 style={{ fontWeight: "bolder", fontSize: "30px" }}>Category</h1>
-        <a href="#" className=" underline-0 text-2xl">
-          All category
-        </a>
+        <h1 style={{ fontWeight: "bolder", fontSize: "30px" }}>Категории</h1>
+        <Link to={"/allCategories"}>Все категории</Link>
       </div>
       <div className="grid grid-cols-2 justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-5 mx-auto">
         {data.slice(0, 6).map((item) => (
-          <div
-            key={item.id}
-            style={{
-              background: "white",
-              textAlign: "center",
-              padding: "20px",
-              borderRadius: "10px",
-              height: "200px",
-              width: "150px",
-            }}
-            className="mx-auto"
-          >
-            <img
-              src={item.images[0]}
-              alt={item.title}
-              style={{ width: "100px", height: "100px", objectFit: "cover" }}
-            />
-            <div>
-              <p>{item.title}</p>
+          <Link to={`productList/${item.id}`} key={item.id}>
+            <div
+              style={{
+                background: "white",
+                textAlign: "center",
+                padding: "20px",
+                borderRadius: "10px",
+                height: "200px",
+                width: "150px",
+              }}
+              className="mx-auto"
+            >
+              <img
+                src={item.img}
+                alt={item.title}
+                style={{ width: "100px", height: "100px", objectFit: "cover" }}
+              />
+              <div>
+                <p>{item.title}</p>
+              </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
       <Cards1 />
