@@ -4,31 +4,38 @@ import { FaRegHeart } from "react-icons/fa";
 import { GiShoppingBag } from "react-icons/gi";
 import { GoPerson } from "react-icons/go";
 import { Button, Input } from "antd";
+import { SearchOutlined } from "@ant-design/icons"; // Search icon import qilindi
 import { Link, NavLink } from "react-router-dom";
 import { Contexts } from "../App";
 import "../header/header.css";
 import Modals from "../modal/Modal";
-import axios from "axios";
 
 function Header() {
-  const { data, setData, like, basket } = useContext(Contexts);
+  const { data, like, basket } = useContext(Contexts);
   const [modal2Open, setModal2Open] = useState(false);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState([]);
+  const [showSearchModal, setShowSearchModal] = useState(false);
 
   const toggleModal2 = () => {
     setModal2Open(!modal2Open);
   };
 
-  const searchIn = (e) => {
-    axios
-      .get(
-        `https://0c7d0caa3768a5b0.mokky.dev/Teplodom?title=*${e.target.value}`
-      )
-      .then((res) => {
-        setData(res.data);
-      })
-      .catch((err) => {
-        console.error(err);
-      });
+  const searchIn = () => {
+    if (searchQuery.trim() === "") {
+      setFilteredData([]);
+      setShowSearchModal(false);
+    } else {
+      const result = data.filter((item) =>
+        item.title.toLowerCase().includes(searchQuery.toLowerCase())
+      );
+      setFilteredData(result);
+      setShowSearchModal(true);
+    }
+  };
+
+  const closeSearchModal = () => {
+    setShowSearchModal(false);
   };
 
   return (
@@ -50,19 +57,50 @@ function Header() {
         </NavLink>
 
         {/* Search Input */}
-        <div className="w-full md:w-auto">
+        <div className="relative w-full md:w-auto flex items-center gap-2">
           <Input
-            onChange={searchIn}
+            onChange={(e) => setSearchQuery(e.target.value)}
             type="text"
             style={{ width: "350px" }}
-            className="md:w-full p-3 rounded-xl shadow-md hidden lg:block outline-none"
+            className="md:w-full p-3 rounded-xl shadow-md outline-none"
             placeholder="Search..."
           />
+          <Button
+            onClick={searchIn}
+            className="bg-[#FFB12A] text-white px-4 rounded-lg flex items-center justify-center"
+            shape="circle" // Icon tugmasini aylana shaklida qilish
+            icon={<SearchOutlined style={{ fontSize: "20px" }} />} // Ikonka
+          />
+
+          {/* Modalga o'xshash qidiruv natijalari */}
+          {showSearchModal && (
+            <div className="absolute left-0 top-12 w-[350px] bg-white shadow-lg rounded-lg p-4 z-50">
+              <Button
+                onClick={closeSearchModal}
+                className="absolute top-1 right-1 text-gray-600"
+                size="small"
+              >
+                X
+              </Button>
+              {filteredData.length > 0 ? (
+                <ul>
+                  {filteredData.map((item) => (
+                    <Link to={`/productList/${item.id}`} key={item.id}>
+                      <li className="border-b p-2 hover:bg-gray-100 cursor-pointer">
+                        {item.title}
+                      </li>
+                    </Link>
+                  ))}
+                </ul>
+              ) : (
+                <p className="text-gray-500">No items found</p>
+              )}
+            </div>
+          )}
         </div>
 
         {/* Icons (Like, Basket, Profile) */}
         <div className="flex gap-4 justify-around">
-          {/* Like Icon */}
           <Link to="/like" className="relative">
             {like.length > 0 && (
               <span className="badge absolute top-0 right-0 transform translate-x-2 -translate-y-2">
@@ -74,7 +112,6 @@ function Header() {
             </Button>
           </Link>
 
-          {/* Basket Icon */}
           <Link to="/basket" className="relative">
             {basket.length > 0 && (
               <span className="badge absolute top-0 right-0 transform translate-x-2 -translate-y-2">
@@ -86,7 +123,6 @@ function Header() {
             </Button>
           </Link>
 
-          {/* Profile Icon */}
           <Button
             className="button_1 flex items-center justify-center"
             onClick={toggleModal2}
@@ -95,6 +131,7 @@ function Header() {
           </Button>
         </div>
       </div>
+
       <Modals modal2Open={modal2Open} setModal2Open={setModal2Open} />
     </div>
   );

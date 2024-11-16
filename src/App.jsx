@@ -72,5 +72,4 @@ function App() {
     </ChakraProvider>
   );
 }
-// dfgsdklfjgbsdfklj
 export default App;

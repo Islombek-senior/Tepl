@@ -70,6 +70,7 @@ function Cards2() {
       });
     }
   };
+
   return (
     <div style={{ padding: "20px" }}>
       <div className="flex justify-between align-middle mb-14 p-8">

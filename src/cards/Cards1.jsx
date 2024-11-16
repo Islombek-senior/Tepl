@@ -90,7 +90,7 @@ function Cards1() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
+    <>
       <div className="flex justify-between align-middle mb-14 p-8">
         <h1 style={{ fontWeight: "bolder", fontSize: "30px" }}>
           Новинки на сайте
@@ -172,7 +172,7 @@ function Cards1() {
           </div>
         ))}
       </div>
-    </div>
+    </>
   );
 }
 
