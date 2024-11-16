@@ -68,6 +68,7 @@ function App() {
             <Footer />
           </Router>
         </div>
+        {/* lkgjnglkrhngrehfnrshf */}
       </Contexts.Provider>
     </ChakraProvider>
   );
