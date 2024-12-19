@@ -65,10 +65,9 @@ const ProductList = () => {
             alt={data_1.title}
             className="object-contain w-3/4 h-auto"
           />
-          {/* kf */}
         </div>
         {loading && <Media loading={loading} />}
-
+        {/* asdf */}
         {/* Ma'lumot bo'limi */}
         <div className="flex-1 text-start relative">
           <h2 className="text-[40px] font-bold mb-4">{data_1.title}</h2>
