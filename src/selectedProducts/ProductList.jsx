@@ -59,7 +59,6 @@ const ProductList = () => {
   return (
     <div className="container mx-auto">
       <div className="flex flex-col md:flex-row bg-white p-6 rounded-lg shadow-lg mt-20 hover:shadow-xl w-full max-w-full mb-16 gap-8">
-        {/* Rasm bo'limi */}
         <div className="flex-1 flex justify-center items-center">
           <img
             src={data_1.img}
