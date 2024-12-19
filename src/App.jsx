@@ -27,7 +27,7 @@ function App() {
       setData(res.data);
     });
   }, []);
-
+  // 09iugfvcguio0iugvcvghuio
   return (
     <ChakraProvider>
       <div style={{ background: "#e9e8e840" }}>
