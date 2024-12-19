@@ -1,11 +1,8 @@
 import { Button } from "antd";
 import React from "react";
-import { useContext } from "react";
 import { FaRegHeart } from "react-icons/fa";
 import { HiMiniShoppingCart } from "react-icons/hi2";
-import { Contexts } from "../App";
 import imgs from "./imgs/image.png";
-import { toast } from "react-toastify";
 import { usePro } from "../hooks/UseContext";
 
 function Discount() {

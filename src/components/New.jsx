@@ -1,10 +1,8 @@
 import { Button, Pagination } from "antd";
-import React, { useContext, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { Contexts } from "../App";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { FaRegHeart } from "react-icons/fa";
-import { toast } from "react-toastify";
 import { usePro } from "../hooks/UseContext";
 
 function New() {

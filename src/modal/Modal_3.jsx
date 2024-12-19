@@ -1,6 +1,5 @@
 import React, { useState } from "react";
-import { Button, Form, Input, Modal, Upload, Typography } from "antd";
-import { UploadOutlined } from "@ant-design/icons";
+import { Button, Form, Input, Modal, Typography } from "antd";
 import { Link } from "react-router-dom";
 
 const { Title, Text } = Typography;

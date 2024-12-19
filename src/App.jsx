@@ -21,9 +21,6 @@ export const Contexts = createContext();
 
 function App() {
   const [data, setData] = useState([]);
-  const [basket, setBasket] = useState([]);
-  const [like, setLike] = useState([]);
-  const [protect, setProtect] = useState(false);
 
   useEffect(() => {
     axios.get("https://0c7d0caa3768a5b0.mokky.dev/Teplodom").then((res) => {

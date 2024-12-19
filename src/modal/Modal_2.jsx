@@ -1,4 +1,3 @@
-import { useStatStyles } from "@chakra-ui/react";
 import { Button, Checkbox, Form, Input, Modal } from "antd";
 import React, { useState } from "react";
 import { toast } from "react-toastify";

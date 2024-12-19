@@ -15,10 +15,6 @@ import {
   DrawerBody,
 } from "@chakra-ui/react";
 import { Link } from "react-router-dom"; // Router Link komponenti
-import img_1 from "../nav/img/image1.png";
-import img_2 from "../nav/img/image2.png";
-import img_3 from "../nav/img/image3.png";
-import img_4 from "../nav/img/image4.png";
 
 const Links = [
   { name: "Товары по акции", path: "/discount" },

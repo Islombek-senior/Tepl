@@ -1,7 +1,6 @@
-import React, { useContext, useEffect, useState } from "react";
+import React from "react";
 import Cards1 from "./Cards1";
 import Cards2 from "./Card2";
-import { Contexts } from "../App";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "../cards/cards.css";

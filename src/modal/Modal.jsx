@@ -1,6 +1,5 @@
-import React, { useContext, useState } from "react";
-import { Button, Form, Input, Modal } from "antd";
-import { Contexts } from "../App";
+import React, { useState } from "react";
+import { Form, Input, Modal } from "antd";
 import { usePro } from "../hooks/UseContext";
 
 const Modals = ({ modal2Open, setModal2Open }) => {
