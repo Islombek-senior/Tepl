@@ -1,3 +1,8 @@
+body {
+  padding: 0;
+  margin: 0;
+  height: 100vh;
+}
 .contact_border {
   padding: 10px;
   margin-bottom: 10px;

@@ -17,6 +17,7 @@ import img3 from "../cards/img/image3.png";
 import img4 from "../cards/img/image4.png";
 import img5 from "../cards/img/nav.png";
 import { Link } from "react-router-dom";
+import { usePro } from "../hooks/UseContext";
 
 const sliderList = [
   {
@@ -65,9 +66,9 @@ const slideBackgrounds = [
 ];
 
 function Cards() {
-  const { data } = useContext(Contexts);
+  const { data } = usePro();
   return (
-    <div style={{ padding: "20px" }}>
+    <div style={{ padding: "20px" }} className=" container mx-auto">
       <div>
         <Swiper className="mySwiper">
           {sliderList.map((sl, index) => (

@@ -1,91 +1,162 @@
 import React from "react";
 import { CiLocationOn } from "react-icons/ci";
-import imgs from "../footer/footer.png";
 import { BsTelephone } from "react-icons/bs";
-import { FaTelegram } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa6";
-import { FaFacebook } from "react-icons/fa";
+import { FaTelegram, FaInstagram, FaFacebook } from "react-icons/fa";
 import { IoIosGlobe } from "react-icons/io";
 import "../footer/footer.css";
+import img_m from "../footer/footer.png";
 
 function Footer() {
   return (
-    <div className="min-height">
-      <div
-        className="grid grid-cols-1 gap-16 justify-between align-middle sm:grid-cols-2 md:grid-cols-2 outlet"
+    <div className="relative">
+      <footer
+        className="footer"
         style={{
           background: "#2D2B45",
-          width: "100%",
-          padding: "20px",
           color: "white",
-          marginTop: "100px",
+          padding: "40px 20px",
+          fontFamily: "Arial, sans-serif",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "flex-end",
-            gap: "20px",
-          }}
-        >
-          <img src={imgs} alt="" style={{ width: "100px", height: "100px" }} />
-          <div>
-            <h4>TEPLODOM</h4>
-            <p style={{ fontSize: "15px" }}>
-              Online store construction materials
-            </p>
+        <div className=" container mx-auto">
+          {/* Top Section */}
+          <div
+            className="footer-container"
+            style={{
+              display: "grid",
+              gridTemplateColumns: "2fr 1fr 1fr 1fr",
+              gap: "20px",
+              alignItems: "start",
+            }}
+          >
+            {/* Logo and Address */}
             <div
-              style={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "baseline",
-                gap: "20px",
-                marginTop: "20px",
-              }}
+              style={{ display: "flex", flexDirection: "column", gap: "15px" }}
             >
-              <CiLocationOn style={{ fontSize: "30px" }} />
-              <p>ul. Usta Shirin, market</p>
-              <p>Jamii, house 134</p>
+              <div
+                style={{ display: "flex", alignItems: "center", gap: "15px" }}
+              >
+                <div
+                  className="logo-circle"
+                  style={{
+                    width: "60px",
+                    height: "60px",
+                    background: "white",
+                    borderRadius: "50%",
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <div className="bg-[#2D2B45] rounded-full">
+                    <img src={img_m} alt="" />
+                  </div>
+                </div>
+                <div>
+                  <h4 style={{ margin: 0, fontWeight: "bold" }}>TEPLODOM</h4>
+                  <p style={{ margin: 0, fontSize: "14px" }}>
+                    Интернет магазин строй материалов
+                  </p>
+                </div>
+              </div>
+              <div
+                className="address"
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "10px",
+                  fontSize: "14px",
+                }}
+              >
+                <CiLocationOn size={24} />
+                <div>
+                  <p style={{ margin: 0 }}>ул. Уста Ширин, рынок</p>
+                  <p style={{ margin: 0 }}>Джамий, дом 134</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Quick Links */}
+            <div>
+              <h4 style={{ fontSize: "18px", marginBottom: "10px" }}>
+                Быстрые ссылки
+              </h4>
+              <ul style={{ listStyle: "none", padding: 0, fontSize: "14px" }}>
+                <li>Мастерам</li>
+                <li>Оформление заказа</li>
+                <li>Пользовательское соглашение</li>
+              </ul>
+            </div>
+
+            {/* Useful Links */}
+            <div>
+              <h4 style={{ fontSize: "18px", marginBottom: "10px" }}>
+                Полезное
+              </h4>
+              <ul style={{ listStyle: "none", padding: 0, fontSize: "14px" }}>
+                <li>О нас</li>
+                <li>Поставщикам</li>
+                <li>Возврат товара</li>
+              </ul>
+            </div>
+
+            {/* Contact Section */}
+            <div>
+              <h4 style={{ fontSize: "18px", marginBottom: "10px" }}>
+                Контакты
+              </h4>
+              <div
+                className="contacts"
+                style={{
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "10px",
+                  fontSize: "14px",
+                }}
+              >
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <BsTelephone /> +998 97 761 62 51
+                </div>
+                <div
+                  style={{ display: "flex", alignItems: "center", gap: "10px" }}
+                >
+                  <BsTelephone /> +998 93 556 91 31
+                </div>
+                <div
+                  className="social-icons"
+                  style={{
+                    display: "flex",
+                    gap: "15px",
+                    marginTop: "10px",
+                    fontSize: "20px",
+                  }}
+                >
+                  <FaTelegram />
+                  <FaInstagram />
+                  <FaFacebook />
+                  <IoIosGlobe />
+                </div>
+              </div>
             </div>
           </div>
+
+          {/* Bottom Section */}
+          <div
+            className="footer-bottom"
+            style={{
+              textAlign: "center",
+              borderTop: "1px solid rgba(255, 255, 255, 0.2)",
+              marginTop: "20px",
+              paddingTop: "10px",
+              fontSize: "14px",
+            }}
+          >
+            <p style={{ margin: 0 }}>© 2021 Teplodom. Все права защищены</p>
+          </div>
         </div>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 justify-between align-middle gap-5">
-          <ul style={{ listStyle: "none" }}>
-            <li>
-              <h4 className="text-2xl mb-2">Quick links</h4>
-            </li>
-            <li>For masters</li>
-            <li>Placing an order</li>
-            <li>User Agreement</li>
-          </ul>
-
-          <ul style={{ listStyle: "none" }}>
-            <li>
-              <h4 className="text-2xl mb-2">Useful</h4>
-            </li>
-            <li>About Us</li>
-            <li>For suppliers</li>
-            <li>Return of goods</li>
-          </ul>
-
-          <ul style={{ listStyle: "none" }}>
-            <li>
-              <h4 className="text-2xl">Contact</h4>
-            </li>
-            <li className="flex justify-around gap-3">
-              <BsTelephone /> +998 97 761 62 51
-            </li>
-            <li className="flex justify-around gap-3">
-              <BsTelephone /> +998 93 556 91 31
-            </li>
-            <li className="flex justify-between align-middle">
-              <FaTelegram /> <FaInstagram /> <FaFacebook />
-              <IoIosGlobe />
-            </li>
-          </ul>
-        </div>
-      </div>
+      </footer>
     </div>
   );
 }

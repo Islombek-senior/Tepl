@@ -33,43 +33,29 @@ function App() {
 
   return (
     <ChakraProvider>
-      <Contexts.Provider
-        value={{
-          data,
-          setData,
-          basket,
-          setBasket,
-          like,
-          setLike,
-          protect,
-          setProtect,
-        }}
-      >
-        <div style={{ background: "#e9e8e840" }}>
-          <Router>
-            <Header />
-            <ResponsiveNav />
-            <Routes>
-              <Route path="/" element={<Cards />} />
-              <Route path="/basket" element={<Basket />} />
-              <Route path="/like" element={<Like />} />
-              <Route path="/productList/:id" element={<ProductList />} />
-              <Route path="/buying/:id" element={<Buying />} />
-              {/* ///////////////////////////////////////// */}
-              <Route path="/contact" element={<Contact />} />
-              <Route path="/forCurer" element={<ForCurer />} />
-              {/* <Route element={<ProtectedRoute />}> */}
-              <Route path="/discount" element={<Discount />} />
-              {/* </Route> */}
-              <Route path="/new" element={<New />} />
-              <Route path="/returnPro" element={<ReturnPro />} />
-              <Route path="/allCategories" element={<AllCategories />} />
-            </Routes>
-            <Footer />
-          </Router>
-        </div>
-        lkgjnglkrhngrehfnrshf
-      </Contexts.Provider>
+      <div style={{ background: "#e9e8e840" }}>
+        <Router>
+          <Header />
+          <ResponsiveNav />
+          <Routes>
+            <Route path="/" element={<Cards />} />
+            <Route path="/basket" element={<Basket />} />
+            <Route path="/like" element={<Like />} />
+            <Route path="/productList/:id" element={<ProductList />} />
+            <Route path="/buying/:id" element={<Buying />} />
+            {/* ///////////////////////////////////////// */}
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/forCurer" element={<ForCurer />} />
+            {/* <Route element={<ProtectedRoute />}> */}
+            <Route path="/discount" element={<Discount />} />
+            {/* </Route> */}
+            <Route path="/new" element={<New />} />
+            <Route path="/returnPro" element={<ReturnPro />} />
+            <Route path="/allCategories" element={<AllCategories />} />
+          </Routes>
+          <Footer />
+        </Router>
+      </div>
     </ChakraProvider>
   );
 }

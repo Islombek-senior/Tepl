@@ -6,92 +6,21 @@ import { HiMiniShoppingCart } from "react-icons/hi2";
 import { Contexts } from "../App";
 import imgs from "./imgs/image.png";
 import { toast } from "react-toastify";
+import { usePro } from "../hooks/UseContext";
 
 function Discount() {
-  const { data, like, basket, setBasket, setLike } = useContext(Contexts);
-
-  const addToBasket = (id) => {
-    const product = data.find((p) => p.id === id);
-    const exsistB = basket.some((t) => t.id === id);
-    if (product && !exsistB) {
-      setBasket([...basket, product]);
-      toast("Added to favorite list!", {
-        position: "top-center", // yoki "bottom-center"
-        autoClose: 800,
-        theme: "colored",
-        className: "bg-success my-toast", // bg-success Bootstrap'dan va my-toast o'z klassingiz
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-          hideProgressBar: true,
-        },
-      });
-    } else if (exsistB) {
-      toast("This product is already exisit!", {
-        autoClose: 800,
-        position: "top-center",
-        theme: "colored",
-        className: "bg-success my-toast_1", // bg-success Bootstrap'dan va my-toast o'z klassingiz
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-          hideProgressBar: true,
-        },
-      });
-    }
-  };
-
-  const addToLike = (id) => {
-    const product = data.find((p) => p.id === id);
-    const exsistL = like.some((t) => t.id === id);
-    if (product && !exsistL) {
-      setLike([...like, product]);
-      toast("Added to favorite list!", {
-        theme: "colored",
-        autoClose: 800,
-        position: "top-center",
-        className: "bg-success my-toast", // bg-success Bootstrap'dan va my-toast o'z klassingiz
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-        },
-      });
-    } else if (exsistL) {
-      toast("This product is already exisit!", {
-        autoClose: 800,
-        position: "top-center",
-        theme: "colored",
-        className: "bg-success my-toast_1", // bg-success Bootstrap'dan va my-toast o'z klassingiz
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-        },
-      });
-    }
-  };
+  const { data, addToBasket, addToLike } = usePro();
 
   return (
     <div className="container mx-auto mt-14">
       <p className="text-3xl mb-14" style={{ fontWeight: "bold" }}>
         Товары по акции
       </p>
-      <div className="grid grid-cols-1 gap-2 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
+      <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
         {data.map((item, index) => (
           <div
-            style={{
-              background: "white",
-              padding: "20px",
-              borderRadius: "10px",
-              marginBottom: "50px",
-              height: "550px",
-              position: "relative",
-            }}
             key={item.id}
-            className="shadow-md"
+            className="relative bg-white rounded-lg shadow-md p-5 mb-8 flex flex-col justify-between min-h-[450px]"
           >
             <div
               style={{
@@ -118,31 +47,32 @@ function Discount() {
                 }}
               />
             </div>
-            <div style={{ textAlign: "start" }}>
-              <p style={{ fontSize: "19px" }}>{item.title}</p>
-              <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                {item.price} $
-              </p>
-              <div className="flex justify-between align-baseline gap-1 mt-5 mb-5">
-                <Button
-                  onClick={() => addToBasket(item.id)}
-                  style={{
-                    fontSize: "17px",
-                  }}
-                  className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
-                >
-                  Add to cart <HiMiniShoppingCart />
-                </Button>
-                <Button
-                  className="bg-[#FFB12A] hover:bg-white hover:text-[#FFB12A] text-white border-0 w-16 sm:w-28 p-2"
-                  onClick={() => addToLike(item.id)}
-                  style={{
-                    fontSize: "17px",
-                  }}
-                >
-                  <FaRegHeart />
-                </Button>
-              </div>
+            {/* Title and Description */}
+            <div className="text-start">
+              <p className="text-lg font-bold mb-2">{item.title}</p>
+              <p className="text-sm text-gray-500 mb-2">{item.description}</p>
+              <p className="text-xl font-bold">{item.price} сум</p>
+            </div>
+
+            <div className="flex items-center justify-between gap-3 mt-[1px]">
+              <Button
+                onClick={() => data.length > 0 && addToBasket(item.id)}
+                style={{
+                  fontSize: "17px",
+                }}
+                className="bg-[#FFB12A] text-white hover:text-[#FFB12A] hover:bg-white border border-[#FFB12A] w-full h-[40px] text-[17px] flex items-center justify-center gap-2"
+              >
+                В корзину <HiMiniShoppingCart />
+              </Button>
+              <Button
+                className="bg-white text-[#FFB12A] border border-[#FFB12A] w-16 h-[40px] flex items-center justify-center hover:bg-[#FFB12A] hover:text-white"
+                onClick={() => addToLike(item.id)}
+                style={{
+                  fontSize: "17px",
+                }}
+              >
+                <FaRegHeart />
+              </Button>
             </div>
           </div>
         ))}

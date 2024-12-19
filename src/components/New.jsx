@@ -5,9 +5,10 @@ import { Contexts } from "../App";
 import { HiMiniShoppingCart } from "react-icons/hi2";
 import { FaRegHeart } from "react-icons/fa";
 import { toast } from "react-toastify";
+import { usePro } from "../hooks/UseContext";
 
 function New() {
-  const { data, like, basket, setBasket, setLike } = useContext(Contexts);
+  const { data, addToBasket, addToLike } = usePro();
 
   // Pagination uchun zaruriy holatlar
   const [currentPage, setCurrentPage] = useState(1); // Hozirgi sahifa
@@ -22,148 +23,55 @@ function New() {
     setCurrentPage(page);
   };
 
-  const addToBasket = (id) => {
-    const product = data.find((p) => p.id === id);
-    const exsistB = basket.some((t) => t.id === id);
-    if (product && !exsistB) {
-      setBasket([...basket, product]);
-      toast("Sevimlilarga qo'shildi!", {
-        theme: "colored",
-        className: "bg-success my-toast",
-        autoClose: 800,
-        position: "top-center",
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-        },
-      });
-    } else if (exsistB) {
-      toast("Bu mahsulot allaqachon mavjud!", {
-        theme: "colored",
-        className: "bg-success my-toast_1",
-        autoClose: 800,
-        position: "top-center",
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-        },
-      });
-    }
-  };
-
-  const addToLike = (id) => {
-    const product = data.find((p) => p.id === id);
-    const exsistL = like.some((t) => t.id === id);
-    if (product && !exsistL) {
-      setLike([...like, product]);
-      toast("Sevimlilarga qo'shildi!", {
-        theme: "colored",
-        className: "bg-success my-toast",
-        autoClose: 800,
-        position: "top-center",
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-        },
-      });
-    } else if (exsistL) {
-      toast("Bu mahsulot allaqachon mavjud!", {
-        theme: "colored",
-        className: "bg-success my-toast_1",
-        autoClose: 800,
-        position: "top-center",
-        style: {
-          fontSize: "16px",
-          padding: "5px",
-          borderRadius: "8px",
-        },
-      });
-    }
-  };
-
   return (
     <div>
       <div style={{ padding: "20px" }}>
         <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
           {currentItems.map((item) => (
             <div
-              style={{
-                background: "white",
-                padding: "20px",
-                borderRadius: "10px",
-                marginTop: "30px",
-                height: "100%",
-                marginBottom: "50px",
-              }}
               key={item.id}
-              className="shadow-md"
+              className="relative bg-white rounded-lg shadow-md p-5 mb-8 flex flex-col justify-between min-h-[450px]"
             >
-              <div
-                style={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  marginBottom: "40px",
-                }}
-              >
-                <Link to={`/productList/${item.id}`}>
-                  <img
-                    src={item.img}
-                    alt=""
-                    style={{
-                      width: "100px",
-                      height: "250px",
-                      objectFit: "contain",
-                    }}
-                    className="mx-auto"
-                  />
-                </Link>
+              {/* Image */}
+              <Link to={`/productList/${item.id}`}>
+                <img
+                  src={item.img}
+                  alt={item.title}
+                  className="mx-auto w-[200px] h-[200px] object-contain mb-4"
+                />
+              </Link>
+
+              {/* Title and Description */}
+              <div className="text-start">
+                <p className="text-lg font-bold mb-2">{item.title}</p>
+                <p className="text-sm text-gray-500 mb-2">{item.description}</p>
+                <p className="text-xl font-bold">{item.price} сум</p>
               </div>
-              <div style={{ textAlign: "start" }}>
-                <p
-                  style={{
-                    fontSize: "20px",
-                    fontWeight: "bold",
-                    marginBottom: "20px",
-                  }}
+
+              {/* Actions */}
+              <div className="flex items-center justify-between gap-3 mt-[1px]">
+                {/* Basket Button */}
+                <Button
+                  onClick={() => data.length > 0 && addToBasket(item.id)}
+                  className="bg-[#FFB12A] text-white hover:text-[#FFB12A] hover:bg-white border border-[#FFB12A] w-full h-[40px] text-[17px] flex items-center justify-center gap-2"
                 >
-                  {item.title}
-                </p>
-                <p style={{ fontSize: "16px", marginBottom: "20px" }}>
-                  {item.desc}
-                </p>
-                <p style={{ fontSize: "20px", fontWeight: "bold" }}>
-                  {item.price} $
-                </p>
-                <div className="flex justify-between align-baseline gap-1 mt-5">
-                  <Button
-                    onClick={() => addToBasket(item.id)}
-                    style={{ fontSize: "15px" }}
-                    className=" bg-[#FFB12A] hover:text-[#FFB12A] text-white border-0 w-44 sm:w-36 p-2"
-                  >
-                    Add to basket
-                    <HiMiniShoppingCart />
-                  </Button>
-                  <Button
-                    className="bg-[#FFB12A] hover:bg-white hover:text-[#FFB12A] text-white border-0 w-16 sm:w-28 p-2"
-                    onClick={() => addToLike(item.id)}
-                    style={{
-                      fontSize: "17px",
-                    }}
-                  >
-                    <FaRegHeart />
-                  </Button>
-                </div>
+                  <HiMiniShoppingCart /> В корзину
+                </Button>
+
+                {/* Like Button */}
+                <Button
+                  onClick={() => addToLike(item.id)}
+                  className="bg-white text-[#FFB12A] border border-[#FFB12A] w-16 h-[40px] flex items-center justify-center hover:bg-[#FFB12A] hover:text-white"
+                >
+                  <FaRegHeart size={20} />
+                </Button>
               </div>
             </div>
           ))}
         </div>
       </div>
       <Pagination
-        style={{ marginTop: "50px", fontSize: "17px" }}
+        style={{ marginTop: "50px", fontSize: "17px", marginBottom: "50px" }}
         align="center"
         current={currentPage}
         pageSize={itemsPerPage}

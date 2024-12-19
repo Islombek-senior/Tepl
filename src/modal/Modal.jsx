@@ -1,9 +1,10 @@
 import React, { useContext, useState } from "react";
 import { Button, Form, Input, Modal } from "antd";
 import { Contexts } from "../App";
+import { usePro } from "../hooks/UseContext";
 
 const Modals = ({ modal2Open, setModal2Open }) => {
-  const { protect, setProtect } = useContext(Contexts);
+  const { protect, setProtect } = usePro();
   const [login, setLogin] = useState(false);
 
   const handleLogin = () => {
