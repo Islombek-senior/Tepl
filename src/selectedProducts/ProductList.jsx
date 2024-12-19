@@ -65,7 +65,6 @@ const ProductList = () => {
             alt={data_1.title}
             className="object-contain w-3/4 h-auto"
           />
-          {/* fkf */}
         </div>
         {loading && <Media loading={loading} />}
 
