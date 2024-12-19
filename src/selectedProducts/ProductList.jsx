@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Link, useParams } from "react-router-dom";
 import { HiMiniShoppingCart } from "react-icons/hi2";
@@ -9,8 +9,6 @@ import {
   FaRegHeart,
   FaWallet,
 } from "react-icons/fa";
-import { Contexts } from "../App";
-import { toast } from "react-toastify";
 import "../selectedProducts/selected.css";
 import { Button } from "antd";
 import Modal_2 from "../modal/Modal_2";
